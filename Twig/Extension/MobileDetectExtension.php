@@ -68,6 +68,7 @@ class MobileDetectExtension extends \Twig_Extension
             new \Twig_SimpleFunction('is_mobile', array($this, 'isMobile')),
             new \Twig_SimpleFunction('is_tablet', array($this, 'isTablet')),
             new \Twig_SimpleFunction('is_device', array($this, 'isDevice')),
+            new \Twig_SimpleFunction('is_firefox', array($this, 'isFirefox')),
             new \Twig_SimpleFunction('is_full_view', array($this, 'isFullView')),
             new \Twig_SimpleFunction('is_mobile_view', array($this, 'isMobileView')),
             new \Twig_SimpleFunction('is_tablet_view', array($this, 'isTabletView')),
@@ -76,6 +77,7 @@ class MobileDetectExtension extends \Twig_Extension
             new \Twig_SimpleFunction('is_android_os', array($this, 'isAndroidOS')),
             new \Twig_SimpleFunction('full_view_url', array($this, 'fullViewUrl'), array('is_safe' => array('html'))),
             new \Twig_SimpleFunction('device_version', array($this, 'deviceVersion')),
+            new \Twig_SimpleFunction('is_firefox', array($this, 'isFirefox')),
         );
     }
 
@@ -172,6 +174,16 @@ class MobileDetectExtension extends \Twig_Extension
         $magicMethodName = 'is'.strtolower((string) $deviceName);
 
         return $this->mobileDetector->$magicMethodName();
+    }
+
+    /**
+     * Is firefox
+     *
+     * @return boolean
+     */
+    public function isFirefox()
+    {
+        return $this->mobileDetector->isFirefox();
     }
 
     /**
